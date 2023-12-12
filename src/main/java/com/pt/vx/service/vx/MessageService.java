@@ -6,7 +6,6 @@ import com.pt.vx.config.KeyConfig;
 import com.pt.vx.config.MainConfig;
 import com.pt.vx.config.WeatherConfig;
 import com.pt.vx.config.WechatConfig;
-import com.pt.vx.pojo.BirthDay;
 import com.pt.vx.pojo.DataInfo;
 import com.pt.vx.pojo.User;
 import com.pt.vx.pojo.VxMessageDto;
@@ -163,7 +162,7 @@ public class MessageService {
     }
 
     private CompletableFuture<Void> buildWeatherOtherInfoFuture(CompletableFuture<List<BaseWeather>> weatherFuture,CompletableFuture<Void> birthFuture,Map<String, DataInfo> map) {
-        return weatherFuture.thenAcceptBothAsync(birthFuture, (list, x) -> {
+        return weatherFuture.thenAcceptBothAsync(null, (list, x) -> {
             if (Objects.equals(MainConfig.otherInfoMode, 0)) {
                 return;
             }
