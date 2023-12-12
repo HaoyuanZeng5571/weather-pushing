@@ -7,7 +7,6 @@ public class User {
     private String Vx;
     private String templateId;
     private String userName;
-    private BirthDay[] birthDays;
     private String address;
     private String city;
 
@@ -33,14 +32,6 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public BirthDay[] getBirthDays() {
-        return birthDays;
-    }
-
-    public void setBirthDays(BirthDay[] birthDays) {
-        this.birthDays = birthDays;
     }
 
     public String getAddress() {
