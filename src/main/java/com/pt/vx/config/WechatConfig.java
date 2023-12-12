@@ -42,7 +42,7 @@ public class WechatConfig {
                 "b5ucqzb9Fu1nw2ck1Fd8XNgTeIMSjds90mEg92CYZQA", //要给这个人发送的模板ID
                 "zhy", //咋称呼这个人
                 "沙田区", //这个人的详细地址
-                "香港", //这个人在的城市
+                "香港" //这个人在的城市
         ));
     }
 
