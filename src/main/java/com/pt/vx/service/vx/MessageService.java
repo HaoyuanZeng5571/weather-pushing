@@ -162,13 +162,18 @@ public class MessageService {
     }
 
     private CompletableFuture<Void> buildWeatherOtherInfoFuture(CompletableFuture<List<BaseWeather>> weatherFuture,CompletableFuture<Void> birthFuture,Map<String, DataInfo> map) {
-        return weatherFuture.thenAcceptBothAsync(, (list, x) -> {
+        return weatherFuture.thenAcceptBothAsync(birthday, (list, x) -> {
             if (Objects.equals(MainConfig.otherInfoMode, 0)) {
                 return;
             }
 
             if (Objects.equals(MainConfig.otherInfoMode, 1) && map.containsKey(KeyConfig.KEY_OTHER_INFO.getKey())) {
                 return;
+            }
+
+            // Assuming you want to delete birthday information, you can add a block like this:
+            if (Objects.equals(MainConfig.otherInfoMode, 2) && map.containsKey(KeyConfig.KEY_BIRTHDAY.getKey())) {
+                map.remove(KeyConfig.KEY_BIRTHDAY.getKey());
             }
 
             list.forEach(weather -> buildWeatherOtherInfo(map,weather));
