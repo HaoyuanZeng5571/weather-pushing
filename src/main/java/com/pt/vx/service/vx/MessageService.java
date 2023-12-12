@@ -171,11 +171,6 @@ public class MessageService {
                 return;
             }
 
-            // Assuming you want to delete birthday information, you can add a block like this:
-            if (Objects.equals(MainConfig.otherInfoMode, 2) && map.containsKey(KeyConfig.KEY_BIRTHDAY.getKey())) {
-                map.remove(KeyConfig.KEY_BIRTHDAY.getKey());
-            }
-
             list.forEach(weather -> buildWeatherOtherInfo(map,weather));
 
         }, ThreadPoolUtil.pool);
