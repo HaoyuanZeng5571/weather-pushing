@@ -39,7 +39,7 @@ public class MessageService {
     private final WeatherService weatherService = new WeatherAdapter();
     private final SecureRandom random = new SecureRandom();
 
-    private final ApiMessageService apiMessageService = new ApiMessageService();
+    //private final ApiMessageService apiMessageService = new ApiMessageService();
 
 
     public void sendMessage(User user) {
