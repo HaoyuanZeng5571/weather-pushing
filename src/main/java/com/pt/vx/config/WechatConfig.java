@@ -44,40 +44,25 @@ public class WechatConfig {
                 "沙田区", //这个人的详细地址
                 "香港", //这个人在的城市
         ));
-
-        userList.add(getUser(
-                "这个人扫码后的微信号",
-                "微信消息模板ID",
-                "这个人的称呼",
-                "江苏省南京市玄武区",
-                "南京",
-                new BirthDay(1999,8,11,false,false,"生日快乐哦~~"),
-                new BirthDay(1999,2,15,true,false,"pt生日快乐！！"),
-                new BirthDay(2020,7,8,true,true),
-                new BirthDay(2020,7,8,true,false,"周年快乐！！！")
-        ));
-
-
     }
 
-    private static User getUser(String vx, String templateId, String username, String address, String city, BirthDay... birthDays){
+    private static User getUser(String vx, String templateId, String username, String address, String city){
         User user=new User();
         user.setVx(vx);
         user.setUserName(username);
-        user.setBirthDays(birthDays);
         user.setAddress(address);
         user.setCity(city);
         user.setTemplateId(templateId);
         return user;
     }
-    private static User getUser(String vx, String templateId, String username, BirthDay... birthDays){
-        return getUser(vx,templateId,username,null,null,birthDays);
+    private static User getUser(String vx, String templateId, String username){
+        return getUser(vx,templateId,username,null,null);
     }
-    private static User getUser(String vx, String templateId, BirthDay... birthDays){
-        return getUser(vx,templateId,null,null,null,birthDays);
+    private static User getUser(String vx, String templateId){
+        return getUser(vx,templateId,null,null,null);
     }
-    private static User getUser(String vx,BirthDay... birthDays){
-        return getUser(vx,null,null,null,null,birthDays);
+    private static User getUser(String vx){
+        return getUser(vx,null,null,null,null);
     }
 
 
