@@ -162,7 +162,7 @@ public class MessageService {
     }
 
     private CompletableFuture<Void> buildWeatherOtherInfoFuture(CompletableFuture<List<BaseWeather>> weatherFuture,Map<String, DataInfo> map) {
-        return weatherFuture.thenAcceptBothAsync((list, x) -> {
+        return weatherFuture.thenAcceptBothAsync(CompletableFuture.completedFuture(null),(list, x) -> {
             if (Objects.equals(MainConfig.otherInfoMode, 0)) {
                 return;
             }
