@@ -63,10 +63,7 @@ public class MessageService {
 
         CompletableFuture<Void> weekFuture = buildWeekFuture(map);
         apiInfoList.add(weekFuture);
-
-        CompletableFuture<Void> birthFuture = buildBirthFuture(map, user);
-        apiInfoList.add(birthFuture);
-
+        
         if (WeatherConfig.OPEN) {
             CompletableFuture<List<BaseWeather>> weatherFuture = buildWeatherFuture(map, user);
             CompletableFuture<Void> buildWeatherInfoFuture = buildWeatherOtherInfoFuture(weatherFuture,birthFuture,map);
