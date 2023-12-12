@@ -7,7 +7,6 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.pt.vx.config.KeyConfig;
 import com.pt.vx.config.MainConfig;
-import com.pt.vx.pojo.BirthDay;
 import com.pt.vx.pojo.User;
 import com.pt.vx.pojo.KeyDTO;
 import com.pt.vx.utils.HttpUtil;
@@ -49,11 +48,6 @@ public class ApiMessageService {
             result = getRandomSentence();
         }else if (KeyConfig.KEY_MI_YU.equalsKey(keyDTO)){
             result = getRiddle();
-        }else if (KeyConfig.KEY_HOROSCOPE.equalsKey(keyDTO)){
-            BirthDay[] birthDays = user.getBirthDays();
-            if( Objects.nonNull(birthDays)){
-                result = getHoroscope(birthDays[0]);
-            }
         }else if (KeyConfig.KEY_HISTORY_TODAY.equalsKey(keyDTO)){
             result = getHistoryToday();
         }else if (KeyConfig.KEY_XIN_GUAN.equalsKey(keyDTO)){
@@ -133,51 +127,7 @@ public class ApiMessageService {
         return name + "(提示：" + tips + ")";
     }
 
-    /**
-     * @return 获取星座分析
-     */
-    private String getHoroscope(BirthDay birthDay) {
-        String url = "https://api.linhun.vip/api/xzys?apiKey=1ceee3e6244c63171e9f2228b5eac1a4&name=%s";
-        int month = birthDay.getMonth();
-        int day = birthDay.getDay();
-        boolean chinese = birthDay.isChineseFlag();
-        if (chinese) {
-            int year = birthDay.getYear();
-            ChineseDate chineseDate = new ChineseDate(year, month, day);
-            month = chineseDate.getGregorianMonthBase1();
-            day = chineseDate.getGregorianDay();
-        }
-        String horoscope = "";
-        if (month == 3 && day >= 21 || month == 4 && day <= 20) {
-            horoscope =  "白羊";
-        } else if (month == 4 || month == 5 && day <= 20) {
-            horoscope = "金牛";
-        } else if (month == 5 || month == 6 && day <= 20) {
-            horoscope = "双子";
-        } else if (month == 6 || month == 7 && day <= 22) {
-            horoscope = "巨蟹";
-        } else if (month == 7 || month == 8 && day <= 22) {
-            horoscope = "狮子";
-        } else if (month == 8 || month == 9 && day <= 22) {
-            horoscope = "处女";
-        } else if (month == 9 || month == 10 && day <= 22) {
-            horoscope = "天秤";
-        } else if (month == 10 || month == 11 && day <= 22) {
-            horoscope = "天蝎";
-        } else if (month == 11 || month == 12 && day <= 22) {
-            horoscope = "射手";
-        } else if (month == 12 || month == 1 && day <= 21) {
-            horoscope = "摩羯";
-        } else if (month == 1 || month == 2 && day <= 19) {
-            horoscope = "水瓶";
-        } else if (month == 2 || month == 3) {
-            horoscope = "双鱼";
-        }else {
-            horoscope = "不知道";
-        }
-        return HttpUtil.get(String.format(url, horoscope));
-    }
-
+    
     /**
      * @return 获取历史上今天
      */
