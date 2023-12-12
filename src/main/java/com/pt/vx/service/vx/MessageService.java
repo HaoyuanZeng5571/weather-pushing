@@ -161,8 +161,8 @@ public class MessageService {
         }, ThreadPoolUtil.pool);
     }
 
-    private CompletableFuture<Void> buildWeatherOtherInfoFuture(CompletableFuture<List<BaseWeather>> weatherFuture,CompletableFuture<Void> birthFuture,Map<String, DataInfo> map) {
-        return weatherFuture.thenAcceptBothAsync(birthday, (list, x) -> {
+    private CompletableFuture<Void> buildWeatherOtherInfoFuture(CompletableFuture<List<BaseWeather>> weatherFuture,Map<String, DataInfo> map) {
+        return weatherFuture.thenAcceptBothAsync((list, x) -> {
             if (Objects.equals(MainConfig.otherInfoMode, 0)) {
                 return;
             }
