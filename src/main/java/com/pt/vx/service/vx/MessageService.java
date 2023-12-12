@@ -66,7 +66,7 @@ public class MessageService {
         
         if (WeatherConfig.OPEN) {
             CompletableFuture<List<BaseWeather>> weatherFuture = buildWeatherFuture(map, user);
-            CompletableFuture<Void> buildWeatherInfoFuture = buildWeatherOtherInfoFuture(weatherFuture,birthFuture,map);
+            CompletableFuture<Void> buildWeatherInfoFuture = buildWeatherOtherInfoFuture(weatherFuture,map);
             apiInfoList.add(buildWeatherInfoFuture);
         }
 
@@ -100,43 +100,6 @@ public class MessageService {
         }
         return futureList;
     }
-
-    private CompletableFuture<Void> buildBirthFuture(Map<String, DataInfo> map, User user) {
-        return CompletableFuture.runAsync(() -> {
-            BirthDay[] birthDays = user.getBirthDays();
-            for (int i = 0; i < birthDays.length; i++) {
-                BirthDay birthDay = birthDays[i];
-                boolean chineseFlag = birthDay.isChineseFlag();
-                boolean countFlag = birthDay.isCountFlag();
-                String day = null;
-                if (countFlag) {
-                    day = getPassDay(birthDay, chineseFlag);
-                } else {
-                    String nextChineseBirthDay = getNextBirthDay(birthDay, chineseFlag);
-                    day = nextChineseBirthDay;
-                    if ("0".equals(nextChineseBirthDay)) {
-                        //倒计时额外信息
-                        if (!Objects.equals(MainConfig.otherInfoMode, 0)) {
-                            String value;
-                            DataInfo dataInfo = map.get(KeyConfig.KEY_OTHER_INFO.getKey());
-                            if(Objects.isNull(dataInfo) || StringUtils.isBlank(dataInfo.getValue())){
-                                value = birthDay.getInfo();
-                            }else {
-                                value = dataInfo.getValue() + "\n" + birthDay.getInfo();
-                            }
-                            setMap(map, KeyConfig.KEY_OTHER_INFO, value);
-                        }
-                    }
-                }
-                setMap(map, KeyConfig.KEY_BIRTHDAY, day, i);
-
-            }
-            setMap(map, KeyConfig.KEY_USER_NAME, user.getUserName());
-        }, ThreadPoolUtil.pool);
-    }
-
-
-
 
     private CompletableFuture<Void> buildWeekFuture(Map<String, DataInfo> map) {
         return CompletableFuture.runAsync(() -> {
@@ -240,25 +203,6 @@ public class MessageService {
                 }
             }
 
-        }
-    }
-
-    private String getNextBirthDay(BirthDay birthDay, boolean chineseFlag) {
-        if (chineseFlag) {
-            return DateUtil.getNextChineseBirthDay(birthDay.getMonth(), birthDay.getDay());
-        } else {
-            return DateUtil.getNextBirthDay(birthDay.getMonth(), birthDay.getDay());
-        }
-    }
-
-    private String getPassDay(BirthDay birthDay, boolean chineseFlag) {
-        LocalDate now = LocalDate.now();
-        if (chineseFlag) {
-            ChineseDate chineseDate = new ChineseDate(birthDay.getYear(), birthDay.getMonth(), birthDay.getDay());
-            return DateUtil.passChineseDayAbs(chineseDate,now);
-        } else {
-            LocalDate of = LocalDate.of(birthDay.getYear(), birthDay.getMonth(), birthDay.getDay());
-            return DateUtil.passDayAbs(now,of);
         }
     }
 
