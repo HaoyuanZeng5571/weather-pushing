@@ -39,7 +39,7 @@ public class MessageService {
     private final WeatherService weatherService = new WeatherAdapter();
     private final SecureRandom random = new SecureRandom();
 
-    //private final ApiMessageService apiMessageService = new ApiMessageService();
+    private final ApiMessageService apiMessageService = new ApiMessageService();
 
 
     public void sendMessage(User user) {
@@ -162,7 +162,7 @@ public class MessageService {
     }
 
     private CompletableFuture<Void> buildWeatherOtherInfoFuture(CompletableFuture<List<BaseWeather>> weatherFuture,CompletableFuture<Void> birthFuture,Map<String, DataInfo> map) {
-        return weatherFuture.thenAcceptBothAsync(null, (list, x) -> {
+        return weatherFuture.thenAcceptBothAsync(, (list, x) -> {
             if (Objects.equals(MainConfig.otherInfoMode, 0)) {
                 return;
             }
