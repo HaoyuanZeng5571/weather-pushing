@@ -14,7 +14,7 @@ public class WeatherConfig {
     /**
      * 天气资源的key
      */
-    public static final String weatherSourceKey = "77244a29758c4c579c13d44bf370e44a";
+    public static final String weatherSourceKey = "12d0f23283d841df8972050f0d5cb351";
 
     /**
      * 天气资源类型
