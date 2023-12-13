@@ -22,7 +22,7 @@ import java.util.Objects;
 @Slf4j
 public class HeFengWeatherService implements WeatherService{
 
-    private static final String API = "https://devapi.qweather.com/v7/weather/%s";
+    private static final String API = "https://api.qweather.com/v7/weather/%s";
     private static final String CITY = "https://geoapi.qweather.com/v2/city/lookup?";
 
     @Override
