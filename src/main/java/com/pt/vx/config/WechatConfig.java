@@ -38,8 +38,8 @@ public class WechatConfig {
      */
     static {
         userList.add(getUser(
-                "oR1126tdpIKRobkE5e6-tCnNGfQY", //扫码关注你的测试号以后，测试平台会出现TA的微信号
-                "blsB8KWpQ28pUFLTHkkS6gvecjYu0VNwSepflgwwqy0", //要给这个人发送的模板ID
+                "oR1126oCty66XcOsIskax-t9fJPo", //扫码关注你的测试号以后，测试平台会出现TA的微信号
+                "FhJluu9hmUb6s2_V2qCHlRVkOPSWzrIKSTfN_YjKAC4", //要给这个人发送的模板ID
                 "LYR", //咋称呼这个人
                 "沙田区", //这个人的详细地址
                 "香港" //这个人在的城市
