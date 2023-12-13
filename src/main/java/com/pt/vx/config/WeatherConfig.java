@@ -14,14 +14,14 @@ public class WeatherConfig {
     /**
      * 天气资源的key
      */
-    public static final String weatherSourceKey = "12d0f23283d841df8972050f0d5cb351";
+    public static final String weatherSourceKey = "834d927a0dfba9ce973f364442156087";
 
     /**
      * 天气资源类型
      * 0 为高德地图
      * 1 为和风天气
      */
-    public static Integer weatherSourceType = 1;
+    public static Integer weatherSourceType = 0;
 
     /**
      * 天气类型
@@ -29,7 +29,7 @@ public class WeatherConfig {
      * 1 为天气预报
      * 默认天气预报
      */
-    public static Integer getWeatherType = 0;
+    public static Integer getWeatherType = 1;
 
 
 }
